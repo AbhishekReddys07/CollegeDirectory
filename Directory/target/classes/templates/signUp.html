@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - College Directory</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #004080;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Signup Form */
+        .signup-form {
+            background-color: white;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .signup-form h2 {
+            margin-bottom: 20px;
+            color: #004080;
+            text-align: center;
+        }
+
+        .signup-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .signup-form input,
+        .signup-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .signup-form button {
+            background-color: #004080;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .signup-form button:hover {
+            background-color: #003060;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* Footer Section */
+        footer {
+            text-align: center;
+            background-color: #004080;
+            color: white;
+            position: absolute;
+           
+            width: 100%;
+            padding: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorElement = document.getElementById('error-message');
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+            if (!passwordRegex.test(password)) {
+                errorElement.textContent = "Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character.";
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                errorElement.textContent = "Passwords do not match.";
+                return false;
+            }
+
+            errorElement.textContent = ""; // Clear the error message
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Signup Form -->
+    <div class="container">
+        <div class="signup-form">
+            <h2>Signup</h2>
+            <div id="error-message" class="error"></div>
+            <form onsubmit="return validateForm()" action="/signup" method="post">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+
+                <!-- Role selection dropdown -->
+                <label for="role">Select Role:</label>
+                <select id="role" name="role" required>
+                    <option value="">--Select Role--</option>
+                    <option value="STUDENT">Student</option>
+                    <option value="FACULTY_MEMBER">Faculty Member</option>
+                    <option value="ADMINISTRATOR">Administrator</option>
+                </select>
+
+                <button type="submit">Signup</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 College Directory. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

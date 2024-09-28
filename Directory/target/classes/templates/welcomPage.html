@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - College Directory</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #004080;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .welcome-section h1 {
+            color: #004080;
+            margin-bottom: 20px;
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* Role Sections */
+        .role-section {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .role-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+        }
+
+        .role-card h2 {
+            color: #004080;
+            margin-bottom: 10px;
+        }
+
+        .role-card p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .role-card a {
+            background-color: #004080;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .role-card a:hover {
+            background-color: #003060;
+        }
+
+        /* Footer Section */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #004080;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+            .role-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .role-card {
+                width: 80%; /* Adjust width for smaller screens */
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/signUp">Sign-up</a></li>
+        </ul>
+    </nav>
+
+    <!-- Welcome Section -->
+    <div class="container">
+        <div class="welcome-section">
+            <h1>Welcome to the College Directory</h1>
+            <p>Navigate through our portal to access student, faculty, and administrator resources.</p>
+        </div>
+
+        <!-- Role Sections -->
+        <div class="role-section">
+            <div class="role-card">
+                <h2>Student</h2>
+                <p>Access your personal profile, grades, courses, and attendance records.</p>
+                <a href="/student">View Profile</a> <!-- Changed to link to student page directly -->
+            </div>
+            <div class="role-card">
+                <h2>Faculty Member</h2>
+                <p>Manage your courses, track student progress, and access teaching resources.</p>
+                <a href="/Faculty">View Dashboard</a>
+            </div>
+            <div class="role-card">
+                <h2>Administrator</h2>
+                <p>Oversee the college operations, manage users, and access administrative tools.</p>
+                <a href="/Admin">View Admin Panel</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 College Directory. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
