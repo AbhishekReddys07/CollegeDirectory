@@ -18,9 +18,15 @@ public class User {
     @Column(name = "role", nullable = false)
      String role;
 
+    @Column(name = "email", nullable = false)
+    String email;
     // Getters and setters
 
-    public Long getId() {
+    public  void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -58,5 +64,10 @@ public class User {
 				+ getId() + ", getUsername()=" + getUsername() + ", getPassword()=" + getPassword() + ", getRole()="
 				+ getRole() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
 				+ super.toString() + "]";
+	}
+
+	public String getEmail() {
+		
+		return "bishek1234@gmail.com";
 	}
 }

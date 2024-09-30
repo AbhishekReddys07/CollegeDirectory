@@ -1,11 +1,13 @@
 package com.College.Directory.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.Directory.Service.LoginService;
 import com.Directory.model.User;
@@ -14,56 +16,65 @@ import com.Directory.model.User;
 public class LoginController {
 
     @Autowired
-    private LoginService loginService; // Assume you have a service to handle user logic
-
-    @GetMapping("/login")
-    public String showLoginForm() {
-        return "login"; // Return the view name for your login page (login.html in /templates)
+    private LoginService loginService;
+    
+    @GetMapping("/student")
+    public String studentDashboard() {
+        return "student"; // Make sure you have a student.html in your templates directory
     }
 
-    @GetMapping("/student")
-    public String studentPage() {
-        return "student"; // Return the view name for student (student.html in /templates)
+    @GetMapping("/faculty")
+    public String facultyDashboard() {
+        return "Faculty"; // Make sure you have Faculty.html in your templates directory
+    }
+
+    @GetMapping("/admin")
+    public String adminDashboard() {
+        return "Admin"; // Make sure you have Admin.html in your templates directory
+    }
+
+    @GetMapping("/login")
+    public String loginpage() {
+    	return "login";
     }
 
     @PostMapping("/login-form")
-    public ModelAndView login(@RequestParam("username") String username,
-                              @RequestParam("password") String password,
-                              @RequestParam("role") String role) {
-        
-        ModelAndView mav = new ModelAndView();
+    public String login(@RequestParam("email") String email,
+                        @RequestParam("password") String password,
+                        @RequestParam("role") String role) {
 
         try {
-            // Validate user credentials
-            User userDetails = loginService.validateUser(username, password); // Validate user with your service
+            // Retrieve user by email
+            User userDetails = loginService.findByEmail(email);
 
-            // If authentication is successful and role matches
-            if (userDetails != null && userDetails.getRole().equals(role)) {
-                switch (role) {
+            // Validate user details (check if user exists, password matches, and role matches)
+            if (userDetails != null && userDetails.getPassword().equals(password) 
+                && userDetails.getRole().equalsIgnoreCase(role)) {
+
+                // Redirect based on role
+                switch (role.toUpperCase()) {
                     case "STUDENT":
-                        mav.setViewName("student"); // Forward to student.html
-                        break;
-                    case "FACULTY":
-                        mav.setViewName("Faculty"); // Forward to faculty.html
-                        break;
-                    case "ADMIN":
-                        mav.setViewName("Admin"); // Forward to admin.html
-                        break;
+                        return "redirect:/student";
+                        
+                    case "FACULTY_MEMBER":
+                        return "redirect:/Faculty";
+                        
+                    case "ADMINISTRATOR":
+                        return "redirect:/Admin";
+                        
                     default:
-                        mav.setViewName("login"); // Default to login.html
-                        mav.addObject("error", "Invalid role.");
-                        break;
+                        return "redirect:/Admin"; // If role does not match
                 }
             } else {
-                mav.setViewName("login");
-                mav.addObject("error", "Invalid username, password, or role.");
+                // If invalid credentials, redirect to login
+                return "redirect:/login";
             }
 
         } catch (Exception e) {
-            mav.setViewName("login");
-            mav.addObject("error", "An error occurred during login: " + e.getMessage());
+            e.printStackTrace();
+            return "redirect:/login"; // Handle any unexpected exceptions by redirecting to login
         }
-
-        return mav;
     }
+
+
 }

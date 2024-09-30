@@ -9,5 +9,7 @@ User findByEmail(String username);
 
 User validateUser(String username, String password);
 
+User getUserByEmail(String email);
+
 
 }

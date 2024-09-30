@@ -1,20 +1,134 @@
-<form action="/signup" method="post">
-    <label for="fullName">Full Name:</label>
-    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - College Directory</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f5;
+            color: #333;
+        }
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" placeholder="Create a password" required>
+        h1, h2 {
+            color: #004080;
+            text-align: center;
+        }
 
-    <label for="role">Select Role:</label>
-    <select id="role" name="role" required>
-        <option value="">--Select Role--</option>
-        <option value="STUDENT">Student</option>
-        <option value="FACULTY_MEMBER">Faculty Member</option>
-        <option value="ADMINISTRATOR">Administrator</option>
-    </select>
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-    <button type="submit">Signup</button>
-</form>
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #004080;
+            color: white;
+        }
+
+        /* Form Styles */
+        form {
+            margin-top: 40px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #004080;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #003060;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Faculty Dashboard</h1>
+        
+        <h2>Students in Your Courses</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Photo</th>
+                    <th>Contact Information</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td><img src="path/to/photo1.jpg" alt="John Doe" width="50" height="50"></td>
+                    <td>Email: john@example.com<br>Phone: 123-456-7890</td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td><img src="path/to/photo2.jpg" alt="Jane Smith" width="50" height="50"></td>
+                    <td>Email: jane@example.com<br>Phone: 098-765-4321</td>
+                </tr>
+                <!-- Add more student rows as needed -->
+            </tbody>
+        </table>
+
+        <h2>Update Contact Information</h2>
+        <form action="/updateContact" method="post">
+            <label for="officeHours">Office Hours:</label>
+            <input type="text" id="officeHours" name="officeHours" placeholder="Enter your office hours" required>
+
+            <label for="contactEmail">Contact Email:</label>
+            <input type="email" id="contactEmail" name="contactEmail" placeholder="Enter your contact email" required>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
+
+            <button type="submit">Update</button>
+        </form>
+    </div>
+
+</body>
+</html>
