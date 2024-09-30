@@ -22,12 +22,21 @@ public class LoginServiceImp implements LoginService {
 	}
 
 	@Override
+
 	public User validateUser(String username, String password) {
 		 User user = login.findByEmail(username); // Retrieve user by email
 	        if (user != null && user.getPassword().equals(password)) { // Validate password
+	        	System.out.println(username+password);
 	            return user; // Return user details if valid
 	        }
 	        return null;
+	}
+
+	@Override
+	@Transactional
+	public User getUserByEmail(String email) {
+	
+		return null;
 	}
 
 }

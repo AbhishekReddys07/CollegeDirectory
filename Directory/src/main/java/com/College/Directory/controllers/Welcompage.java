@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class Welcompage {
 
-	@GetMapping("welcompage")
+	@GetMapping("/")
 	public String welcompage() {
 		return "welcomPage";
 	}
+	
+	
 }
